@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+dist/
+build/
+*.spec
+
+# App specific
+config.json
+app_icon.ico
+create_icon.py
+# 成果物のフォルダ
+docs/file_distributor/
