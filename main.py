@@ -271,21 +271,23 @@ class SettingsApp:
         input_frame = ttk.LabelFrame(frame, text="ルールの追加", padding="10")
         input_frame.grid(row=3, column=0, columnspan=4, pady=10, sticky="ew")
 
-        ttk.Label(input_frame, text="種別:").grid(row=0, column=0, padx=5, sticky="w")
-        self.type_combo = ttk.Combobox(input_frame, values=RULE_TYPE_LABELS, width=18, state="readonly")
-        self.type_combo.grid(row=0, column=1, padx=5, sticky="w")
+        # 1行目: 種別 + パターン
+        ttk.Label(input_frame, text="種別:").grid(row=0, column=0, padx=(5, 2), sticky="e")
+        self.type_combo = ttk.Combobox(input_frame, values=RULE_TYPE_LABELS, width=20, state="readonly")
+        self.type_combo.grid(row=0, column=1, padx=(2, 10), sticky="w")
         self.type_combo.current(0)
         self.type_combo.bind("<<ComboboxSelected>>", self.on_type_changed)
 
-        ttk.Label(input_frame, text="パターン:").grid(row=0, column=2, padx=5, sticky="w")
-        self.pattern_combo = ttk.Combobox(input_frame, values=PRESET_EXTENSIONS, width=15)
-        self.pattern_combo.grid(row=0, column=3, padx=5, sticky="w")
+        ttk.Label(input_frame, text="パターン:").grid(row=0, column=2, padx=(10, 2), sticky="e")
+        self.pattern_combo = ttk.Combobox(input_frame, values=PRESET_EXTENSIONS, width=18)
+        self.pattern_combo.grid(row=0, column=3, padx=(2, 5), sticky="ew")
 
-        ttk.Label(input_frame, text="移動先:").grid(row=1, column=0, padx=5, pady=(5, 0), sticky="w")
-        self.path_entry = ttk.Entry(input_frame, width=50)
-        self.path_entry.grid(row=1, column=1, columnspan=3, padx=5, pady=(5, 0), sticky="ew")
-        ttk.Button(input_frame, text="参照", command=self.browse_folder).grid(row=1, column=4, padx=5, pady=(5, 0))
-        ttk.Button(input_frame, text="登録", command=self.add_rule).grid(row=1, column=5, padx=5, pady=(5, 0))
+        # 2行目: 移動先 + 参照 + 登録
+        ttk.Label(input_frame, text="移動先:").grid(row=1, column=0, padx=(5, 2), pady=(8, 0), sticky="e")
+        self.path_entry = ttk.Entry(input_frame)
+        self.path_entry.grid(row=1, column=1, columnspan=3, padx=(2, 5), pady=(8, 0), sticky="ew")
+        ttk.Button(input_frame, text="参照", command=self.browse_folder).grid(row=1, column=4, padx=3, pady=(8, 0))
+        ttk.Button(input_frame, text="登録", command=self.add_rule).grid(row=1, column=5, padx=(3, 5), pady=(8, 0))
 
         input_frame.columnconfigure(3, weight=1)
 
